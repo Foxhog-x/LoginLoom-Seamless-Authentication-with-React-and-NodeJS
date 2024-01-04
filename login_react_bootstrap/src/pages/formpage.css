@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main_container{
+    display: grid;
+    place-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.info_text{
+     display: flex;
+     flex-direction: column;
+    margin-bottom: 20px;
+   border-radius: 8px;
+    padding: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     
+}
+.select_country{
+    width: 120px;
+}
+.select_state{
+    width: 130px;
+}
+.select_city{
+    width: 100px;
+}
+.select_option_row{
+    display: flex;
+    gap:20px;
+    justify-content: space-around;
+}
+h5{ 
+    padding-bottom: 5px;
+    border-bottom:  1px solid black;
+}
+.form_1{
+    width: 400px;
+    display: grid;
+    flex-direction: column;
+}
+
+
+.form_row{
+    display: flex;
+    gap: 20px;
+}
+
+
+
+
+
+
+
+
