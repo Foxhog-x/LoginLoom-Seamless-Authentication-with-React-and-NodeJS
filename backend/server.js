@@ -1,11 +1,12 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
+const cors = require("cors");
 
-app.get("/", (req, res) => {
-  res.send("server is running ");
-});
+app.use(cors());
+app.use(express.json());
 
-app.listen(5500, () => {
-  console.log("listening on the port 5500");
+app.use("/user", require("./routes/userRoute"));
+
+app.listen(8000, (req, res) => {
+  console.log("listening on 8000");
 });
