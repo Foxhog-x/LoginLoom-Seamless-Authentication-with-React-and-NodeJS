@@ -5,25 +5,26 @@ import { Country, State, City } from "country-state-city";
 import { useRef, useState } from "react";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
-
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 export const Formpage = () => {
   const formRef = useRef();
-  const [show, setShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastData, setToastData] = useState("nothing is happend");
+  const [toastColor, setToastColor] = useState("");
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+  });
 
   const toggleShowA = () => {
-    setShow(false);
+    setShowToast(false);
   };
 
-  // const [userForm, setuserForm] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  //   country: "",
-  //   state: "",
-  //   city: "",
-  //   address: "",
-  // });
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
@@ -38,8 +39,7 @@ export const Formpage = () => {
   const stateCode = state.isoCode;
   const stateList = State.getStatesOfCountry(countryCode);
   const cityList = City.getCitiesOfState(countryCode, stateCode);
-
-  console.log(state);
+  console.log(country, "country");
   const handleSelectCountry = (e) => {
     setCountry(countryList[e.target.value]);
   };
@@ -51,17 +51,13 @@ export const Formpage = () => {
     setCity(cityList[e.target.value].name);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setShow(true);
-    setTimeout(async () => {
-      setShow(false);
-      sendData();
-    }, 3000);
+  const onSubmit = (data) => {
+    console.log(data);
+    sendData();
   };
 
   const sendData = async () => {
-    fetch("http://localhost:8000/user", {
+    fetch("http://localhost:8000/adduser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -74,6 +70,23 @@ export const Formpage = () => {
         city: city,
         address: address,
       }),
+    }).then((res) => {
+      try {
+        if (res.status === 201) {
+          setShowToast(true);
+          setTimeout(() => {
+            setShowToast(false);
+          }, 2500);
+
+          setToastData("Form has been saved successfully");
+          setToastColor("text-success");
+        } else res.status;
+      } catch (error) {
+        console.log(error);
+        setShowToast(true);
+        setToastColor("text-danger");
+        setToastData("something is wrong with the backend");
+      }
     });
   };
 
@@ -82,7 +95,7 @@ export const Formpage = () => {
       <div className="main_container">
         <div className="info_text">
           <h5 className="add_details_name">Add details </h5>
-          <Form form ref={formRef} onSubmit={handleSubmit}>
+          <form form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <div className="form_1">
                 <div className="form_row">
@@ -91,26 +104,58 @@ export const Formpage = () => {
                       First Name
                     </Form.Label>
                     <Form.Control
+                      {...register("inputFirstName", {
+                        required: "This is required",
+                        minLength: {
+                          value: 2,
+                          message: "This input not minLength.",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "at most 30 word ",
+                        },
+                      })}
                       id="inputFirstName3"
                       type="text"
                       placeholder="First Name"
                       onChange={(e) => setFirstName(e.target.value)}
                     />
-                  </div>{" "}
+                    <ErrorMessage errors={errors} name="inputFirstName" />
+                  </div>
                   <div>
                     <Form.Label htmlFor="inputLastName3">Last Name</Form.Label>
                     <Form.Control
+                      {...register("inputLastName", {
+                        required: "This is required",
+                        minLength: {
+                          value: 2,
+                          message: "This input not minLength.",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "at most 30 word ",
+                        },
+                      })}
                       id="inputLastName3"
                       type="text"
                       placeholder="Last Name"
                       onChange={(e) => setLastName(e.target.value)}
                     />
+                    <ErrorMessage errors={errors} name="inputLastName" />
                   </div>
                 </div>
                 <Form.Label className="mt-3" htmlFor="emailaddress">
                   Email
                 </Form.Label>
                 <Form.Control
+                  {...register("inputEmail", {
+                    required: "email is required",
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      message: "this is wrong email",
+                    },
+                  })}
                   id="emailaddress"
                   type="email"
                   placeholder="Email"
@@ -118,10 +163,22 @@ export const Formpage = () => {
                     setEmail(e.target.value);
                   }}
                 />
+                <ErrorMessage errors={errors} name="inputEmail" />
                 <Form.Label className="mt-3" htmlFor="inputPassword5">
                   Password
                 </Form.Label>
                 <Form.Control
+                  {...register("inputpassword", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 3,
+                      message: "at least three chr allowed",
+                    },
+                    maxLength: {
+                      value: 20,
+                      message: "at most 16 chr allowed ",
+                    },
+                  })}
                   type="password"
                   id="inputPassword5"
                   aria-describedby="passwordHelpBlock"
@@ -129,6 +186,7 @@ export const Formpage = () => {
                     setPassword(e.target.value);
                   }}
                 />
+                <ErrorMessage errors={errors} name="inputpassword" />
                 <Form.Text id="passwordHelpBlock" muted>
                   Your password must be 8-20 characters long, contain letters
                   and numbers
@@ -136,18 +194,22 @@ export const Formpage = () => {
                 <div className="select_option_row">
                   <div>
                     <Form.Select
+                      {...register("inputSelect", {
+                        required: "This is required",
+                      })}
                       size="sm"
                       className="mt-3 select_country"
                       aria-label="Default select example"
                       onChange={handleSelectCountry}
                     >
-                      <option>Country</option>
+                      <option value={100}>--Country-- </option>
                       {countryList.map((value, index) => (
                         <option value={index} key={index}>
                           {value.name}
                         </option>
                       ))}
                     </Form.Select>
+                    <ErrorMessage errors={errors} name="inputSelect" />
                   </div>
                   <div>
                     <Form.Select
@@ -156,7 +218,7 @@ export const Formpage = () => {
                       aria-label="Default select example"
                       onChange={handleState}
                     >
-                      <option>State</option>
+                      <option value={0}>States</option>
                       {stateList.map((value, index) => (
                         <option value={index} key={index}>
                           {value.name}
@@ -186,19 +248,23 @@ export const Formpage = () => {
                 >
                   <Form.Label className="mt-3">Address</Form.Label>
                   <Form.Control
+                    {...register("inputAddress", {
+                      required: "This is required",
+                    })}
                     onChange={(e) => {
                       setAddress(e.target.value);
                     }}
                     as="textarea"
                     rows={3}
                   />
+                  <ErrorMessage errors={errors} name="inputAddress" />
                 </Form.Group>
                 <Button type="submit" variant="primary">
                   Submit
                 </Button>
               </div>
             </Form.Group>
-          </Form>
+          </form>
         </div>
       </div>
       <ToastContainer
@@ -206,17 +272,15 @@ export const Formpage = () => {
         position={"top-end"}
         style={{ zIndex: 1 }}
       >
-        <Toast show={show} onClose={toggleShowA} autohide>
+        <Toast show={showToast} onClose={() => toggleShowA}>
           <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
-            <strong className="me-auto">Bootstrap</strong>
+            <div className={toastColor}></div>
+            <strong className="me-auto .bg-success">Notification</strong>
             <small>... min ago</small>
           </Toast.Header>
-          <Toast.Body>Form Has been Submitted</Toast.Body>
+          <Toast.Body className={toastColor}>
+            {toastData ? toastData : ""}
+          </Toast.Body>
         </Toast>
       </ToastContainer>
     </>
