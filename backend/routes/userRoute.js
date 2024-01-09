@@ -8,12 +8,13 @@ router.get("/details", (req, res) => {
 
 router.post("/", async (req, res) => {
   const data = req.body;
+  console.log(data, "adduser");
   try {
     const user = await new User({
       firstname: data.firstName,
       lastname: data.lastName,
       email: data.email,
-      password: data.passwod,
+      password: data.password,
       country: data.country,
       state: data.state,
       city: data.city,

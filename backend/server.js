@@ -15,6 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/adduser", require("./routes/userRoute"));
+app.use("/login", require("./routes/loginRoute"));
+app.use("/createuser", require("./routes/createUserRoute"));
 
 app.listen(8000, (req, res) => {
   console.log("listening on 8000");

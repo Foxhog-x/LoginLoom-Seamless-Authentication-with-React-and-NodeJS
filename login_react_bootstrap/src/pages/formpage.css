@@ -8,6 +8,7 @@
     place-content: center;
     align-items: center;
     height: 100vh;
+   
 }
 .info_text{
      display: flex;
@@ -38,6 +39,7 @@ h5{
 }
 .form_1{
     width: 400px;
+    
     display: grid;
     flex-direction: column;
 }
@@ -58,6 +60,8 @@ h5{
 }
 
 
-
+body{
+    height: 100vh;
+}
 
 

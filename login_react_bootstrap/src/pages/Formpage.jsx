@@ -14,7 +14,6 @@ export const Formpage = () => {
   const [toastColor, setToastColor] = useState("");
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -55,7 +54,7 @@ export const Formpage = () => {
     console.log(data);
     sendData();
   };
-
+  console.log("fidrstname ", firstName);
   const sendData = async () => {
     fetch("http://localhost:8000/adduser", {
       method: "POST",
@@ -80,12 +79,17 @@ export const Formpage = () => {
 
           setToastData("Form has been saved successfully");
           setToastColor("text-success");
-        } else res.status;
+        } else {
+          console.log("HELLO");
+          setShowToast(true);
+          setToastColor("text-danger");
+          setToastData("something is wrong with the backend");
+          setTimeout(() => {
+            setShowToast(false);
+          }, 500);
+        }
       } catch (error) {
         console.log(error);
-        setShowToast(true);
-        setToastColor("text-danger");
-        setToastData("something is wrong with the backend");
       }
     });
   };
@@ -118,7 +122,9 @@ export const Formpage = () => {
                       id="inputFirstName3"
                       type="text"
                       placeholder="First Name"
-                      onChange={(e) => setFirstName(e.target.value)}
+                      onChange={(e) =>
+                        setFirstName(e.target.value.trim().toLowerCase())
+                      }
                     />
                     <ErrorMessage errors={errors} name="inputFirstName" />
                   </div>
@@ -139,7 +145,9 @@ export const Formpage = () => {
                       id="inputLastName3"
                       type="text"
                       placeholder="Last Name"
-                      onChange={(e) => setLastName(e.target.value)}
+                      onChange={(e) =>
+                        setLastName(e.target.value.toLowerCase())
+                      }
                     />
                     <ErrorMessage errors={errors} name="inputLastName" />
                   </div>
@@ -160,7 +168,7 @@ export const Formpage = () => {
                   type="email"
                   placeholder="Email"
                   onChange={(e) => {
-                    setEmail(e.target.value);
+                    setEmail(e.target.value.toLowerCase());
                   }}
                 />
                 <ErrorMessage errors={errors} name="inputEmail" />
