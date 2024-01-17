@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import "./loginpage.css";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export const Loginpage = () => {
   const [showToast, setShowToast] = useState(false);
   const navigate = useNavigate();
@@ -46,20 +46,19 @@ export const Loginpage = () => {
           setShowToast(true);
 
           jsontoken.then((result) => {
-            console.log(result);
             localStorage.setItem("authToken", result.authToken);
           });
           setTimeout(() => {
             setShowToast(false);
             navigate("/");
           }, 1000);
-          setToastData("Form has been saved successfully");
+          setToastData("Validated Successfully");
           setToastColor("text-success");
         } else {
           console.log("HELLO");
           setShowToast(true);
           setToastColor("text-danger");
-          setToastData("something is wrong with the backend");
+          setToastData("Incorrect Credentials");
           setTimeout(() => {
             setShowToast(false);
           }, 4500);
@@ -73,53 +72,57 @@ export const Loginpage = () => {
   return (
     <>
       <div className="form_grid">
-        <Form onSubmit={handleSubmit(onsubmit)}>
-          <div className="login_heading">
-            <h1>Login</h1>
-          </div>
+        <div className="internal_form_div">
+          <Form onSubmit={handleSubmit(onsubmit)}>
+            <div className="login_heading">
+              <h1>Login</h1>
+            </div>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              {...register("inputEmail", {
-                required: "This is required",
-              })}
-              name="inputEmail"
-              className="px-2 py-2"
-              type="email"
-              placeholder="Enter email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <ErrorMessage errors={errors} name="inputEmail" />
-            <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                {...register("inputEmail", {
+                  required: "This is required",
+                })}
+                name="inputEmail"
+                className=" input_login px-2 py-2"
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+              <ErrorMessage errors={errors} name="inputEmail" />
+              <Form.Text className="text-muted"></Form.Text>
+            </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              {...register("password", {
-                required: "This Field is required",
-              })}
-              className="px-2 py-2"
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <ErrorMessage errors={errors} name="password" />
-            <span className="createuser">
-              {" "}
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-              Create New user
-            </span>
-          </Form.Group>
-        </Form>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                {...register("password", {
+                  required: "This Field is required",
+                })}
+                className="input_login px-2 py-2"
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+              <ErrorMessage errors={errors} name="password" />
+              <span className="createuser">
+                {" "}
+                <Button variant="light" type="submit">
+                  Submit
+                </Button>
+                <Link className="link_createuser" to={"/signup"}>
+                  Create New User
+                </Link>
+              </span>
+            </Form.Group>
+          </Form>
+        </div>
 
         <ToastContainer
           className="p-3"

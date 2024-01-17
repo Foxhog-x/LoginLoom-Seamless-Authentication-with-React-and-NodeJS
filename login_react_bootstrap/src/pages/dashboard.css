@@ -1,0 +1,56 @@
+.main_container_dash{
+    padding: 20px;
+}
+body{
+    background-color: grey;
+}
+.main_container_dash_flex{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+   
+}
+.left_dash_flex{
+    display: flex;
+  
+    gap: 20px;
+    
+}
+.react-bootstrap-table table {
+    table-layout: auto;
+    }
+.scroll{
+    overflow:scroll;
+    height:80vh;
+    padding: 5px;
+    margin: 5px;
+    overflow: auto;
+}
+input.search{
+
+    padding: 7px;
+    margin: 7px;
+    border: none;
+    border-radius: 7px;
+    background: lightg
+}
+.deletebtn:hover{
+    color: black;
+    background-color: black;
+    border-color: red;
+
+}
+@media screen and (max-width:480px){
+    input.search{
+        width: 100px;
+    }
+}
+.search_div{
+   
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    margin: 5px;
+     
+}

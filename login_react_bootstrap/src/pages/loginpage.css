@@ -2,10 +2,26 @@
     display:  grid;
     place-content: center ;
     height: 100vh;
-    border: 1px solid black;
+    
+    background-image: url('../assets/loginpage_2.jpg');
+    background-size: cover;
+    background-attachment: fixed; 
+   
+     
+    
 }
-
  
+.internal_form_div{
+    box-shadow: rgba(0, 0, 0, 0.80) 0px 5px 15px;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 8px;
+}
+form{
+    width: 400px;
+     
+    
+}
 
 .login_heading{
     margin-bottom: 20px;
@@ -14,5 +30,14 @@
     display: flex;
     margin-top: 20px;
      justify-content: space-between;
+     color: whitesmoke;
 }
- 
+.link_createuser{
+text-decoration: none;
+color: #d3d3d3;
+}
+
+.input_login{
+    background: #949494 ;
+    border: grey;
+}

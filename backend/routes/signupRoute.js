@@ -2,13 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../model/userModel");
-router.get("/details", (req, res) => {
-  res.send("hello");
-});
 
 router.post("/", async (req, res) => {
   const data = req.body;
-  console.log(data, "adduser");
+  console.log(data, "addeduser");
   try {
     const user = await new User({
       firstname: data.firstName,
@@ -32,5 +29,8 @@ router.post("/", async (req, res) => {
     }
   }
 });
+// router.post("/delete", (req, res) => {
+//   console.log(req.body);
+// });
 
 module.exports = router;

@@ -38,7 +38,7 @@ export const Formpage = () => {
   const stateCode = state.isoCode;
   const stateList = State.getStatesOfCountry(countryCode);
   const cityList = City.getCitiesOfState(countryCode, stateCode);
-  console.log(country, "country");
+
   const handleSelectCountry = (e) => {
     setCountry(countryList[e.target.value]);
   };
@@ -51,12 +51,13 @@ export const Formpage = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     sendData();
+    console.log(data, "sdfsf");
+    document.getElementById("formref").reset();
   };
-  console.log("fidrstname ", firstName);
+
   const sendData = async () => {
-    fetch("http://localhost:8000/adduser", {
+    await fetch("http://localhost:8000/adduser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -77,10 +78,9 @@ export const Formpage = () => {
             setShowToast(false);
           }, 2500);
 
-          setToastData("Form has been saved successfully");
+          setToastData("Account Created Successfully");
           setToastColor("text-success");
         } else {
-          console.log("HELLO");
           setShowToast(true);
           setToastColor("text-danger");
           setToastData("something is wrong with the backend");
@@ -99,7 +99,12 @@ export const Formpage = () => {
       <div className="main_container">
         <div className="info_text">
           <h5 className="add_details_name">Add details </h5>
-          <form form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+          <form
+            id="formref"
+            form
+            ref={formRef}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <Form.Group>
               <div className="form_1">
                 <div className="form_row">

@@ -1,37 +1,60 @@
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/esm/Button";
-import { useNavigate } from "react-router";
-
+import { useLocation, useNavigate } from "react-router";
+import "../App.css";
 export const Header = () => {
+  const [loginbtn, setLoginbtn] = useState(true);
+  const location = useLocation();
   const navigate = useNavigate();
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
+  const handleLogin = () => {
     navigate("/login");
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+    setLoginbtn(true);
+  };
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token !== null) {
+      setLoginbtn(false);
+    }
+    if (token !== null && location.pathname === "/login") {
+      navigate("/");
+    }
+  }, [location, navigate]);
+
   return (
     <>
-      <Navbar className="navbar bg-primary" data-bs-theme="dark">
+      <Navbar className="navbar bg-body-tertiary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">
-            <img
-              alt=""
-              src="/img/logo.svg"
-              width="30"
-              height="30"
-              className="d-inline-block align-top"
-            />{" "}
-            Login Form
-          </Navbar.Brand>
-          <Button
-            variant="danger"
-            type="submit"
-            onClick={() => {
-              handleLogout();
-            }}
-          >
-            Logout
-          </Button>
+          <Navbar.Brand href="#home">OP</Navbar.Brand>
+          <>
+            {loginbtn ? (
+              <Button
+                variant="danger"
+                type="submit"
+                onClick={() => {
+                  handleLogin();
+                }}
+              >
+                Login
+              </Button>
+            ) : (
+              <Button
+                variant="danger"
+                type="submit"
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                LogOut
+              </Button>
+            )}
+          </>
         </Container>
       </Navbar>
     </>
