@@ -1,6 +1,6 @@
 # Project Title
 
-React NodeJS Bootstrap Login System
+LoginLoom: Seamless Authentication with React and NodeJS
 
 ## Description
 
@@ -17,8 +17,16 @@ By building this authentication system, developers can learn:
 - The significance of refresh tokens and their role in maintaining user sessions.
 - Best practices for securing web applications against common vulnerabilities.
 - Integration of Bootstrap for a clean and responsive user interface.
+  
+Furthermore, the project demonstrates the implementation of the following features:
 
-This project aims to serve as a practical guide for developers seeking to implement a secure, token-based authentication system in their applications. The use of JWT and refresh tokens not only enhances security but also provides a smoother and more user-friendly experience for both developers and end-users.
+- **React States:** Utilize React states to manage the application's dynamic content, providing a smooth and responsive user experience.
+- **Bootstrap Table:** Integrate a Bootstrap table to display user details, enhancing the overall visual appeal and organization of user information.
+- **Modal Component:** Implement a modal component to handle user interactions such as registration
+- **Delete Functionality:** Add a delete function within the Bootstrap table to allow users to remove their details. This feature enhances the user's control over their information and contributes to a more user-friendly application.
+
+This comprehensive project aims to serve as a practical guide for developers seeking to implement a secure, token-based authentication system with enhanced user interface features in their React applications. The use of JWT, refresh tokens, React states, and Bootstrap components collectively provides a foundation for building modern and secure web applications and also provide more user-friendly experience for both developers and end-users.
+ 
 
 ## Quick Start
 
