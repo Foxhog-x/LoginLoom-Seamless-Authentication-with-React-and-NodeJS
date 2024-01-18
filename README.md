@@ -55,7 +55,7 @@ Follow these steps to quickly set up and run the project:
 5. Start the backend server:
   node server.js
 ##Note: This will require and mongodb database i did not provide mine due to security purpose so for that you will require either local mongodb in your system like mongodb compass or online(atlas) mongodb. for setup a database schema
-the schema is given inside the model you can read it and create it accordingly also add database name infront of ? of mongo url it will connect automaticatically
+##the schema is given inside the model you can read it and create it accordingly also add database name infront of ? of mongo url it will connect automaticatically
 
 
 6. Visit http://localhost:3000 in your browser to see the app in action.
