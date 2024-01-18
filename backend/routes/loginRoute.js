@@ -1,11 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const User = require("../model/userModel");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const secret = "thispasssecret";
+const secret = process.env.SECRET_JWT;
 router.post("/", async (req, res) => {
   const email = req.body.email;
-
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
           },
         };
         const jwtAuthToken = jwt.sign(data, secret);
-        console.log(jwtAuthToken);
         res.status(201).json({
           success: true,
           authToken: jwtAuthToken,

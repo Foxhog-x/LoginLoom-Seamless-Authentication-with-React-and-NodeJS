@@ -25,8 +25,14 @@ export const Dashboard = () => {
   useEffect(() => {
     const fetchApi = async () => {
       try {
+        const token = localStorage.getItem("authToken");
         setIsLoading(true);
-        const response = await fetch("http://localhost:8000/userdetails");
+        const response = await fetch("http://localhost:8000/userdetails", {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
 
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -46,18 +52,22 @@ export const Dashboard = () => {
     let filterData = apiData;
     if (search) {
       filterData = filterData.filter((value) =>
-        value.firstname.toLowerCase().includes(search.toLowerCase())
+        value.first_name.toLowerCase().includes(search.toLowerCase())
       );
     }
     return filterData.length ? filterData : ["nodata"];
   };
-
+  console.log(searchFunction());
   const handleDeleteApi = (_id) => {
     if (window.confirm("Are you sure to delete this")) {
       try {
+        const token = localStorage.getItem("authToken");
         fetch("http://localhost:8000/userdetails/delete", {
           method: "post",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
           body: JSON.stringify({
             id: _id,
           }),
@@ -100,7 +110,7 @@ export const Dashboard = () => {
         ></input>
       </div>
       <div className="scroll">
-        <Table striped bordered hover variant="dark" cellspacing="0">
+        <Table striped bordered hover variant="dark">
           <thead>
             <tr className="table-light">
               <th>#</th>
@@ -122,14 +132,14 @@ export const Dashboard = () => {
                     <tr>
                       <td>{index + 1}</td>
                       <td>
-                        {value.firstname &&
-                          value.firstname[0].toUpperCase() +
-                            value.firstname.substring(1)}
+                        {value.first_name &&
+                          value.first_name[0].toUpperCase() +
+                            value.first_name.substring(1)}
                       </td>
                       <td>
-                        {value.lastname &&
-                          value.lastname[0].toUpperCase() +
-                            value.lastname.substring(1)}
+                        {value.last_name &&
+                          value.last_name[0].toUpperCase() +
+                            value.last_name.substring(1)}
                       </td>
                       <td>{value.email}</td>
                       <td>{value.country}</td>

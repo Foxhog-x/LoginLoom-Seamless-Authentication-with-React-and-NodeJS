@@ -1,8 +1,11 @@
+require("dotenv").config();
 const express = require("express");
+
 const User = require("../model/userModel");
 const router = express.Router();
+const jwtAuthoriztionMiddlewere = require("../authMiddlewere");
 
-router.get("/", async (req, res) => {
+router.get("/", jwtAuthoriztionMiddlewere, async (req, res) => {
   const user = await User.find({});
   try {
     if (user != null) {
@@ -13,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/delete", async (req, res) => {
+router.post("/delete", jwtAuthoriztionMiddlewere, async (req, res) => {
   const userObjId = req.body.id.toLowerCase();
   console.log(userObjId);
   try {

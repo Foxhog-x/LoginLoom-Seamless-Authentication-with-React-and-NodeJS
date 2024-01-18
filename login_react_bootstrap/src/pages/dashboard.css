@@ -7,13 +7,14 @@ body{
 .main_container_dash_flex{
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     align-items: center;
    
 }
 .left_dash_flex{
     display: flex;
-  
     gap: 20px;
     
 }
