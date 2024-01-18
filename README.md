@@ -4,7 +4,7 @@ LoginLoom: Seamless Authentication with React and NodeJS
 
 ## Description
 
-This project is a simple login system built using React for the frontend, NodeJS for the backend, and Bootstrap for styling. It provides a basic authentication mechanism for user login and stores user details securely.
+This project is a  login system built using React for the frontend, NodeJS for the backend, and Bootstrap for styling. It provides a robust authentication mechanism for user login and stores user details securely.
 
 ## Motivation/Goal
 
