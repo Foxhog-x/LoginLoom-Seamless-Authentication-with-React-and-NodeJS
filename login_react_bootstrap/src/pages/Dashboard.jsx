@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import { ModalAddUser } from "../components/ModalAddUser";
 import trashIcon from "../assets/recycle-bin.png";
 // import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 export const Dashboard = () => {
   const [modalShow, setModalShow] = useState(false);
   const [search, setSearch] = useState("");
@@ -52,7 +53,7 @@ export const Dashboard = () => {
     let filterData = apiData;
     if (search) {
       filterData = filterData.filter((value) =>
-        value.first_name.toLowerCase().includes(search.toLowerCase())
+        value?.first_name?.toLowerCase().includes(search.toLowerCase())
       );
     }
     return filterData.length ? filterData : ["nodata"];
@@ -92,10 +93,9 @@ export const Dashboard = () => {
         <h1>User Details </h1>
         <div className="left_dash_flex">
           <div className="flexdis"></div>
-
-          <Button variant="primary" onClick={() => setModalShow(true)}>
+          <motion.button className="btn" variant="primary" onClick={() => setModalShow(true)}>
             Add User
-          </Button>
+          </motion.button>
           <Button variant="danger"> Delete All</Button>
         </div>
       </div>

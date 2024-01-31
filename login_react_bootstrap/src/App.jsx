@@ -8,6 +8,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
 import { Dashboard } from "./pages/Dashboard";
 import { Notloginpage } from "./pages/Notloginpage";
+import { Imdbpage } from "./pages/Imdbpage";
+import { Chatpage } from "./pages/Chatpage";
+import { Fileupload } from "./pages/Fileupload";
 
 function App() {
   return (
@@ -21,6 +24,10 @@ function App() {
             <Route exact path="/signup" element={<Formpage />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/pagenot" element={<Notloginpage />} />
+            <Route exact path="/imdb" element={<Imdbpage />} />
+
+            <Route exact path="/message" element={<Chatpage />} />
+            <Route exact path="/upload" element={<Fileupload />} />
           </Routes>
         </div>
       </Router>

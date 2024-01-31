@@ -1,17 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 
+const mypass = "djslfj";
 const User = require("../model/userModel");
 
 router.post("/", async (req, res) => {
   const data = req.body;
-  console.log(data, "addeduser");
+
+  const salt = await bcrypt.genSalt(10);
+  const secretPassword = await bcrypt.hash(data.password, salt);
+
   try {
     const user = await new User({
       firstname: data.firstName,
       lastname: data.lastName,
       email: data.email,
-      password: data.password,
+      password: secretPassword,
       country: data.country,
       state: data.state,
       city: data.city,

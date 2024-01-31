@@ -99,21 +99,20 @@ export const Loginpage = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                {...register("password", {
+                {...register("password_", {
                   required: "This Field is required",
                 })}
                 className="input_login px-2 py-2"
                 type="password"
                 placeholder="Password"
-                name="password"
+                name="password_"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
               <ErrorMessage errors={errors} name="password" />
               <span className="createuser">
-                {" "}
-                <Button variant="light" type="submit">
+                <Button variant="light" type="onsubmit">
                   Submit
                 </Button>
                 <Link className="link_createuser" to={"/signup"}>

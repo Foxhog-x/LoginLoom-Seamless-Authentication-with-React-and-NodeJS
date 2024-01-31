@@ -31,7 +31,7 @@ export const Header = () => {
     <>
       <Navbar className="navbar bg-body-tertiary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">OP</Navbar.Brand>
+          <Navbar.Brand href="#home">Demo</Navbar.Brand>
           <>
             {loginbtn ? (
               <Button
