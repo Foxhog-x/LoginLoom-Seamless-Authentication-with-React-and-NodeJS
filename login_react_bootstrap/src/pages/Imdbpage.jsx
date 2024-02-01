@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "../components/MovieCard";
 import "../App.css";
 import { Filter } from "../components/Filter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 // const token = process.env.TMDB;
-const token = "hdsfs";
+const token =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MDQ4NzUzNDhhNGUxNDM0NWY3ZjU1ZTdlMTQwNjQzNyIsInN1YiI6IjY1YThiMzllNmY5NzQ2MDEzN2Q4ZWJmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.537GvbqXljt0a12j3tHk3NFOXtwJv7ZcuNJzB82Tbic";
 export const Imdbpage = () => {
   const [apiData, setapiData] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
@@ -41,9 +42,11 @@ export const Imdbpage = () => {
       </div>
 
       <motion.div animate={{ y: "500" }} className="grid_movie">
-        {filterData?.map((movie) => {
-          return <MovieCard key={movie.id} movie={movie} />;
-        })}
+        <AnimatePresence>
+          {filterData?.map((movie) => {
+            return <MovieCard key={movie.id} movie={movie} />;
+          })}
+        </AnimatePresence>
       </motion.div>
     </>
   );
