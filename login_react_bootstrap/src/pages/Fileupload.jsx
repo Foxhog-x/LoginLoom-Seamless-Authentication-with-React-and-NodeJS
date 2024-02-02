@@ -1,22 +1,66 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import "./fileupload.css";
-export const Fileupload = () => {
-  const [file, setFile] = useState([]);
+
+import { ToastNotification } from "../components/ToastNotification";
+export const Fileupload = ({
+  showToast,
+  toastData,
+  toastColor,
+  setShowToast,
+  setToastData,
+  setToastColor,
+}) => {
+  const [fileList, setFileList] = useState([]);
+
+  const toggleShowA = () => {
+    setShowToast(false);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("file", file);
+    for (let i = 0; i < fileList.length; i++) {
+      formData.append("file", fileList[i]);
+    }
+
     fetch("http://localhost:8000/upload", {
       method: "POST",
       body: formData,
-    });
+    }).then((res) =>
+      res.json().then((data) => {
+        setShowToast(true);
+        switch (data.status) {
+          case 413:
+            setToastData(data.message);
+            setToastColor("text-danger");
+            break;
+          case 429:
+            setToastData(data.message);
+            setToastColor("text-danger");
+            break;
+          case 422:
+            setToastData(data.message);
+            setToastColor("text-danger");
+            break;
+          case 201:
+            setToastData("File Save Successfully");
+            setToastColor("text-success");
+            break;
+          default:
+            setToastData("Something Else is wrong");
+            setToastColor("text-danger");
+            break;
+        }
+      })
+    );
   };
   const handleFileChange = (e) => {
     console.log(e.target.files);
     const files = e.target.files;
-    setFile(files[0]);
+
+    setFileList(files);
   };
 
   return (
@@ -26,6 +70,7 @@ export const Fileupload = () => {
         <form id="upload_form" action="Post">
           <input
             type="file"
+            multiple
             name="file"
             id="file"
             onChange={(e) => {
@@ -39,6 +84,23 @@ export const Fileupload = () => {
           </button>
         </form>
       </div>
+
+      <ToastNotification
+        showToast={showToast}
+        toastData={toastData}
+        toastColor={toastColor}
+        toggleShowA={toggleShowA}
+      />
+      {/* <Toast show={showToast} onClose={toggleShowA}>
+          <Toast.Header>
+            <div className={toastColor}></div>
+            <strong className="me-auto .bg-success">Notification</strong>
+            <small>... min ago</small>
+          </Toast.Header>
+          <Toast.Body className={toastColor}>
+            {toastData ? toastData : ""}
+          </Toast.Body>
+        </Toast> */}
     </div>
   );
 };

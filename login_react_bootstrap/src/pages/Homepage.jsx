@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 
 export const Homepage = () => {
   const navigate = useNavigate();
@@ -11,16 +10,34 @@ export const Homepage = () => {
     }
   }, [navigate]);
 
-  const handleRoute = () => {
-    navigate("/dashboard");
+  const handleRoute = (urlCheck) => {
+    console.log(urlCheck);
+    switch (urlCheck) {
+      case "dashboard":
+        navigate("/dashboard");
+        break;
+      case "upload_page":
+        navigate("/upload");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
-    <div>
-      <h1>
-        <button onClick={handleRoute}>Dashboard</button>
-      </h1>
-      <Link to={"/upload"}>Upload page</Link>
-    </div>
+    <>
+      <div>
+        <h1>
+          <button onClick={() => handleRoute("dashboard")}>Dashboard</button>
+        </h1>
+      </div>
+      <div>
+        <h1>
+          <button onClick={() => handleRoute("upload_page")}>
+            Upload Page
+          </button>
+        </h1>
+      </div>
+    </>
   );
 };

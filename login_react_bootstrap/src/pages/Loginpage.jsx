@@ -1,14 +1,20 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import Toast from "react-bootstrap/Toast";
-import ToastContainer from "react-bootstrap/ToastContainer";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./loginpage.css";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Link, useNavigate } from "react-router-dom";
-export const Loginpage = () => {
-  const [showToast, setShowToast] = useState(false);
+import { ToastNotification } from "../components/ToastNotification";
+export const Loginpage = ({
+  showToast,
+  toastData,
+  toastColor,
+  setShowToast,
+  setToastData,
+  setToastColor,
+}) => {
   const navigate = useNavigate();
   const toggleShowA = () => {
     setShowToast(false);
@@ -21,9 +27,6 @@ export const Loginpage = () => {
   } = useForm({
     criteriaMode: "all",
   });
-
-  const [toastData, setToastData] = useState("nothing is happend");
-  const [toastColor, setToastColor] = useState("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -123,22 +126,12 @@ export const Loginpage = () => {
           </Form>
         </div>
 
-        <ToastContainer
-          className="p-3"
-          position={"top-end"}
-          style={{ zIndex: 1 }}
-        >
-          <Toast show={showToast} onClose={toggleShowA}>
-            <Toast.Header>
-              <div className={toastColor}></div>
-              <strong className="me-auto .bg-success">Notification</strong>
-              <small>... min ago</small>
-            </Toast.Header>
-            <Toast.Body className={toastColor}>
-              {toastData ? toastData : ""}
-            </Toast.Body>
-          </Toast>
-        </ToastContainer>
+        <ToastNotification
+          showToast={showToast}
+          toastData={toastData}
+          toastColor={toastColor}
+          toggleShowA={toggleShowA}
+        />
       </div>
     </>
   );

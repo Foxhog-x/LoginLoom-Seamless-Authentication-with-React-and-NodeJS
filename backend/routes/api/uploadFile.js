@@ -35,7 +35,7 @@ const upload = multer({
 });
 
 router.post("/", upload.array("file"), (req, res) => {
-  res.json({ status: "success" });
+  res.json({ status: 201 });
 });
 
 // router.post("/multiuploads", upload.array("file"), (req, res) => {

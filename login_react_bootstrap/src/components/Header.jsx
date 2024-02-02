@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/esm/Button";
 import { useLocation, useNavigate } from "react-router";
 import "../App.css";
+import { Link } from "react-router-dom";
 export const Header = () => {
   const [loginbtn, setLoginbtn] = useState(true);
   const location = useLocation();
@@ -31,7 +32,11 @@ export const Header = () => {
     <>
       <Navbar className="navbar bg-body-tertiary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Demo</Navbar.Brand>
+          <Navbar.Brand>
+            <Link to={"/"} style={{ textDecoration: "none" }}>
+              Demo
+            </Link>
+          </Navbar.Brand>
           <>
             {loginbtn ? (
               <Button
