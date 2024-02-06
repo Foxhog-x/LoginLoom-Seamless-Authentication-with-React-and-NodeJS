@@ -6,6 +6,7 @@ export const ToastNotification = ({
   toggleShowA,
   toastColor,
   toastData,
+  time,
 }) => {
   return (
     <div>
@@ -16,9 +17,9 @@ export const ToastNotification = ({
       >
         <Toast show={showToast} onClose={toggleShowA}>
           <Toast.Header>
-            <div className={toastColor}></div>
+            x<div className={toastColor}></div>
             <strong className="me-auto .bg-success">Notification</strong>
-            <small>... min ago</small>
+            <small>{time === "" ? "now" : time}</small>
           </Toast.Header>
           <Toast.Body className={toastColor}>
             {toastData ? toastData : ""}

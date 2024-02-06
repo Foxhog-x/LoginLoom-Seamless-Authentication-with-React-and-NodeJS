@@ -19,6 +19,9 @@ export const Homepage = () => {
       case "upload_page":
         navigate("/upload");
         break;
+      case "accordance":
+        navigate("/accordance");
+        break;
       default:
         break;
     }
@@ -36,6 +39,11 @@ export const Homepage = () => {
           <button onClick={() => handleRoute("upload_page")}>
             Upload Page
           </button>
+        </h1>
+      </div>
+      <div>
+        <h1>
+          <button onClick={() => handleRoute("accordance")}>Accordance</button>
         </h1>
       </div>
     </>

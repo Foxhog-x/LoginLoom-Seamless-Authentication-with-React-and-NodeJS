@@ -19,13 +19,6 @@ app.use("/adduser", require("./routes/signupRoute"));
 app.use("/login", require("./routes/loginRoute"));
 app.use("/userdetails", require("./routes/userDetails"));
 app.use("/upload", require("./routes/api/uploadFile"));
-// app.use((error, req, res, next) => {
-//   if (error instanceof multer.MulterError) {
-//     if (error.code === "LIMIT_FILE_SIZE") {
-//       return res.json({ message: "file is to large" });
-//     }
-//   }
-// });
 app.use(multerErrorHandler);
 app.listen(8000, () => {
   console.log("listening on 8000");

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const uuid = require("uuid").v4;
+const { format } = require("date-fns");
 
 // const upload = multer({ dest: "uploads/" });
 // const multiUploadByFileds = upload.fields(
@@ -13,13 +14,17 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
   },
-  filename: (req, file, cb) => {
+  filename: async (req, file, cb) => {
     console.log(file);
     const { originalname } = file;
+    await originalname.toString().replace(/\s/g, "_");
+    const datetime = await format(new Date(), "yyyyMMdd_HH:mm:ss_");
+    const savedName = `${datetime}${uuid()}_${originalname}`;
 
-    cb(null, `${Date()}-${uuid()}-${originalname}`);
+    cb(null, savedName);
   },
 });
+
 const fileFilter = (req, file, cb) => {
   if (file.mimetype.split("/")[0] === "image") {
     cb(null, true);
@@ -35,7 +40,7 @@ const upload = multer({
 });
 
 router.post("/", upload.array("file"), (req, res) => {
-  res.json({ status: 201 });
+  res.json({ status: 201, datetime: Date.now() });
 });
 
 // router.post("/multiuploads", upload.array("file"), (req, res) => {

@@ -13,6 +13,12 @@ export const Fileupload = ({
 }) => {
   const [fileList, setFileList] = useState([]);
 
+  // const dateTimeFunction = async (datetime) => {
+  //   const newTime = (await Date.now()) - datetime;
+  //   console.log(newTime, "sdfsd");
+  //   setTime(newTime);
+  // };
+
   const toggleShowA = () => {
     setShowToast(false);
   };
@@ -31,6 +37,8 @@ export const Fileupload = ({
     }).then((res) =>
       res.json().then((data) => {
         setShowToast(true);
+
+        setTimeout();
         switch (data.status) {
           case 413:
             setToastData(data.message);

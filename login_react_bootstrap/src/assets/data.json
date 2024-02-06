@@ -1,0 +1,5 @@
+[{"id":1,"question":"What is React ? ","details":"React is a free and open-source front-end JavaScript library for building user interfaces based on components. It is maintained by Meta and a community of individual developers and companies. "},
+{"id":2,"question":"What is Javascript","details":"JavaScript, often abbreviated as JS, is a programming language and core technology of the World Wide Web, alongside HTML and CSS. As of 2024, 98.9% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries."},
+{"id":3,"question":"What is node.js","details":"Node.js is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. "},
+{"id":4,"question":"What is Mongodb","details":"MongoDB is a source-available, cross-platform, document-oriented database program. Classified as a NoSQL database product, MongoDB utilizes JSON-like documents with optional schemas."}
+ ]
