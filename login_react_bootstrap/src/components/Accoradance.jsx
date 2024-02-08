@@ -1,6 +1,7 @@
 import data from "../assets/data.json";
 import "../App.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 export const Accoradance = () => {
   const [selected, setSelected] = useState(null);
   const [multiSelectd, setMultiSelected] = useState(false);
@@ -37,7 +38,13 @@ export const Accoradance = () => {
         {data.map((value, id) => {
           return (
             <>
-              <div
+              <motion.div
+                transition={{ delay: 0.3 * id }}
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40 }}
+                exit={{ opacity: 0, y: 20 }}
+                // whileHover={{ scale: 1.1 }}
+                // whileTap={{ scale: 0.9 }}>
                 onClick={
                   multiSelectd
                     ? () => handleMultiSelect(id)
@@ -57,7 +64,7 @@ export const Accoradance = () => {
                 ) : value.id - 1 === selected ? (
                   <p className="details_paragraph">{value.details}</p>
                 ) : null}
-              </div>
+              </motion.div>
             </>
           );
         })}

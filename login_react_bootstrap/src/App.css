@@ -52,11 +52,11 @@ body{
     display: grid;
 }
 .flex_content{
-     
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     padding: 10px;
-   
+   margin: 2px;
     border: 1px solid black;
     background: rgb(191,191,191);
 background: linear-gradient(170deg, rgba(191,191,191,0.8926164215686274) 9%, rgba(218,218,218,0.19233630952380953) 92%);
@@ -65,7 +65,7 @@ background: linear-gradient(170deg, rgba(191,191,191,0.8926164215686274) 9%, rgb
 }
 
 .question{
-    width: 400px;
+    width: 500px;
 }
 /* .container{
     background-color: bisque;
@@ -80,11 +80,12 @@ background: linear-gradient(170deg, rgba(191,191,191,0.8926164215686274) 9%, rgb
 .multiselect{
     padding: 10px;
     margin: 20px;
+    margin-top: 50px;
     background: rgb(191,191,191);
     background: linear-gradient(170deg, rgba(191,191,191,0.8926164215686274) 9%, rgba(218,218,218,0.19233630952380953) 92%);
 }
 .details_paragraph{
-    width: 350px;
+    width: 500px;
     padding: 10px;
 }
 .bg_ground{

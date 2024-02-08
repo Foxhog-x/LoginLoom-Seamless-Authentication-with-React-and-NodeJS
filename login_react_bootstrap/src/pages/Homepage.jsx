@@ -22,6 +22,9 @@ export const Homepage = () => {
       case "accordance":
         navigate("/accordance");
         break;
+      case "imdb":
+        navigate("/imdb");
+        break;
       default:
         break;
     }
@@ -44,6 +47,11 @@ export const Homepage = () => {
       <div>
         <h1>
           <button onClick={() => handleRoute("accordance")}>Accordance</button>
+        </h1>
+      </div>
+      <div>
+        <h1>
+          <button onClick={() => handleRoute("imdb")}>Imdb </button>
         </h1>
       </div>
     </>

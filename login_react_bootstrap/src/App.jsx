@@ -12,7 +12,7 @@ import { Imdbpage } from "./pages/Imdbpage";
 import { Chatpage } from "./pages/Chatpage";
 import { Fileupload } from "./pages/Fileupload";
 import { useState } from "react";
-import { Accoradance } from "./components/Accoradance";
+import { Accoradancepage } from "./pages/Accoradancepage";
 
 function App() {
   const [showToast, setShowToast] = useState(false);
@@ -61,7 +61,8 @@ function App() {
                 />
               }
             />
-            <Route exact path="/accordance" element={<Accoradance />} />
+            <Route exact path="/accordance" element={<Accoradancepage />} />
+            <Route exact path="/imdb" element={<Imdbpage />} />
           </Routes>
         </div>
       </Router>

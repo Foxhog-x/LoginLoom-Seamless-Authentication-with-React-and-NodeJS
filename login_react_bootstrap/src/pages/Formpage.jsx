@@ -86,7 +86,7 @@ export const Formpage = () => {
           setToastData("something is wrong with the backend");
           setTimeout(() => {
             setShowToast(false);
-          }, 500);
+          }, 1000);
         }
       } catch (error) {
         console.log(error);

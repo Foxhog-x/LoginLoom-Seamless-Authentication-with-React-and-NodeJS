@@ -1,5 +1,6 @@
-[{"id":1,"question":"What is React ? ","details":"React is a free and open-source front-end JavaScript library for building user interfaces based on components. It is maintained by Meta and a community of individual developers and companies. "},
-{"id":2,"question":"What is Javascript","details":"JavaScript, often abbreviated as JS, is a programming language and core technology of the World Wide Web, alongside HTML and CSS. As of 2024, 98.9% of websites use JavaScript on the client side for webpage behavior, often incorporating third-party libraries."},
-{"id":3,"question":"What is node.js","details":"Node.js is a cross-platform, open-source JavaScript runtime environment that can run on Windows, Linux, Unix, macOS, and more. "},
-{"id":4,"question":"What is Mongodb","details":"MongoDB is a source-available, cross-platform, document-oriented database program. Classified as a NoSQL database product, MongoDB utilizes JSON-like documents with optional schemas."}
+[{"id":1,"question":"What is the capital of Australia ?","details":"Canberra is Australia’s capital, inland from the country's southeast coast. Surrounded by forest, farmland and nature reserves, it earns its nickname, the  the Bush Capital. "},
+{"id":2,"question":"Who painted the Mona Lisa ?",
+"details":"The Mona Lisa painting is one of the most emblematic portraits in the history of art, where is located at the Louvre. Painted by Leonardo da Vinci in the 16th century"},
+{"id":3,"question":"Who painted the famous artwork The Starry Night ?","details":"The Starry Night is an oil-on-canvas painting by the Dutch Post-Impressionist painter Vincent van Gogh. Painted in June 1889 "},
+{"id":4,"question":"What is the largest planet in our solar system ?","details":"Jupiter is the fifth planet from the Sun and the largest in the Solar System. "} 
  ]
