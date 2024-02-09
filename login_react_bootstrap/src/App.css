@@ -67,10 +67,7 @@ background: linear-gradient(170deg, rgba(191,191,191,0.8926164215686274) 9%, rgb
 .question{
     width: 500px;
 }
-/* .container{
-    background-color: bisque;
-    width: 200px;
-} */
+ 
 .question_flex{
     display: flex;
     justify-content: space-evenly;

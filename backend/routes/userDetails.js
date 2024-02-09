@@ -1,31 +1,50 @@
 require("dotenv").config();
 const express = require("express");
-
 const User = require("../model/userModel");
 const router = express.Router();
-const jwtAuthoriztionMiddlewere = require("../authMiddlewere");
+const jwtAuthoriztionMiddleware = require("../middlewares/authMiddleware");
+const db_con = require("../db");
 
-router.get("/", jwtAuthoriztionMiddlewere, async (req, res) => {
-  const user = await User.find({});
+router.get("/", jwtAuthoriztionMiddleware, async (req, res) => {
+  const sqlquery = "SELECT * FROM users ";
+  // const user = await User.find({});
   try {
-    if (user != null) {
-      res.json(user);
-    }
+    db_con.query(sqlquery, (error, results) => {
+      if (error) console.log(error);
+      res.json(results);
+    });
+    // if (user != null) {
+    //   res.json(user);
+    // }
   } catch (error) {
     console.log(error);
   }
 });
 
-router.post("/delete", jwtAuthoriztionMiddlewere, async (req, res) => {
-  const userObjId = req.body.id.toLowerCase();
-  console.log(userObjId);
+router.post("/delete", jwtAuthoriztionMiddleware, async (req, res) => {
+  const id = req.body.id;
+
+  const sqlquery = `DELETE FROM users WHERE id = ${id} `;
   try {
-    // await User.deleteOne({ _id: userObjId });
-    await User.deleteOne({ _id: userObjId });
-    res.send({ status: "success" });
+    db_con.query(sqlquery, (error, results) => {
+      if (error) console.log(error);
+      res.send({ status: "success" });
+    });
   } catch (error) {
     console.log(error);
   }
+  // const userObjId = req.body.id.toLowerCase();
+  // db_con.query(sqlquery, (error, results) => {
+  //   if (error) console.log(error);
+  //   res.json(results);
+  // });
+  // try {
+  //   // await User.deleteOne({ _id: userObjId });
+  //   await User.deleteOne({ _id: userObjId });
+  //   res.send({ status: "success" });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 module.exports = router;

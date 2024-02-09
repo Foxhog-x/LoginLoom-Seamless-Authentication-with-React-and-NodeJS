@@ -45,7 +45,6 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/pagenot" element={<Notloginpage />} />
             <Route exact path="/imdb" element={<Imdbpage />} />
-
             <Route exact path="/message" element={<Chatpage />} />
             <Route
               exact
@@ -62,12 +61,9 @@ function App() {
               }
             />
             <Route exact path="/accordance" element={<Accoradancepage />} />
-            <Route exact path="/imdb" element={<Imdbpage />} />
           </Routes>
         </div>
       </Router>
-
-      <div></div>
     </>
   );
 }

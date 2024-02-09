@@ -39,6 +39,7 @@ export const Accoradance = () => {
           return (
             <>
               <motion.div
+                key={id}
                 transition={{ delay: 0.3 * id }}
                 animate={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 40 }}
@@ -50,19 +51,22 @@ export const Accoradance = () => {
                     ? () => handleMultiSelect(id)
                     : () => handleSelected(id)
                 }
-                key={id}
                 className="flex_content"
               >
                 <div className="question_flex">
-                  <h2 className="question">{value.question}</h2>
+                  <h5 className="question">{value.question}</h5>
                   <span>+</span>
                 </div>
                 {multiSelectd ? (
                   multiSelectArray.indexOf(value.id - 1) !== -1 && (
-                    <p className="details_paragraph">{value.details}</p>
+                    <p key={id} className="details_paragraph">
+                      {value.details}
+                    </p>
                   )
                 ) : value.id - 1 === selected ? (
-                  <p className="details_paragraph">{value.details}</p>
+                  <p key={id} className="details_paragraph">
+                    {value.details}
+                  </p>
                 ) : null}
               </motion.div>
             </>

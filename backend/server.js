@@ -3,8 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 // const mongoose = require("mongoose");
-const multerErrorHandler = require("./multerMiddlewere");
-const sqlConnection = require("./db");
+const multerErrorHandler = require("./middlewares/multerMiddleware");
 
 // mongoose.connect(process.env.MONGODB_URL);
 // const mysql = require("mysql2");
@@ -23,12 +22,9 @@ const sqlConnection = require("./db");
 //   console.log("Connected to MySQL server as id " + connection.threadId);
 // });
 
-// Perform your database operations here
-
-// Don't forget to close the connection when you're done
-
+//for mongodb connection
 // const db = mongoose.connection;
-sqlConnection();
+
 // db.on("error", (error) => console.error(error));
 // db.once("open", () => console.log("connected to db"));
 

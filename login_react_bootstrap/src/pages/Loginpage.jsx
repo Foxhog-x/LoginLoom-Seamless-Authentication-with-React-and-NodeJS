@@ -58,7 +58,6 @@ export const Loginpage = ({
           setToastData("Validated Successfully");
           setToastColor("text-success");
         } else {
-          console.log("HELLO");
           setShowToast(true);
           setToastColor("text-danger");
           setToastData("Incorrect Credentials");

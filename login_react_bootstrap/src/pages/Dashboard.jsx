@@ -40,6 +40,7 @@ export const Dashboard = () => {
         }
 
         const data = await response.json();
+        console.log(data);
         setapiData(data);
         isloding(false);
       } catch (error) {
@@ -58,7 +59,7 @@ export const Dashboard = () => {
     }
     return filterData.length ? filterData : ["nodata"];
   };
-  console.log(searchFunction());
+
   const handleDeleteApi = (_id) => {
     if (window.confirm("Are you sure to delete this")) {
       try {
@@ -93,7 +94,11 @@ export const Dashboard = () => {
         <h1>User Details </h1>
         <div className="left_dash_flex">
           <div className="flexdis"></div>
-          <motion.button className="btn" variant="primary" onClick={() => setModalShow(true)}>
+          <motion.button
+            className="btn"
+            variant="primary"
+            onClick={() => setModalShow(true)}
+          >
             Add User
           </motion.button>
           <Button variant="danger"> Delete All</Button>
@@ -156,7 +161,7 @@ export const Dashboard = () => {
                           variant="light"
                           className="deletebtn"
                           onClick={() => {
-                            handleDeleteApi(value._id);
+                            handleDeleteApi(value.id);
                           }}
                         >
                           <img

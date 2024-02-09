@@ -80,6 +80,13 @@ export const Formpage = () => {
 
           setToastData("Account Created Successfully");
           setToastColor("text-success");
+        } else if (res.status === 409) {
+          setShowToast(true);
+          setToastColor("text-danger");
+          setToastData("email address already existed");
+          setTimeout(() => {
+            setShowToast(false);
+          }, 4500);
         } else {
           setShowToast(true);
           setToastColor("text-danger");
