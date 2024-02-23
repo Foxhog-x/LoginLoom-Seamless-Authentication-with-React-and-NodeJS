@@ -13,6 +13,7 @@ import { Chatpage } from "./pages/Chatpage";
 import { Fileupload } from "./pages/Fileupload";
 import { useState } from "react";
 import { Accoradancepage } from "./pages/Accoradancepage";
+import { Colorchangepage } from "./pages/Colorchangepage";
 
 function App() {
   const [showToast, setShowToast] = useState(false);
@@ -61,6 +62,7 @@ function App() {
               }
             />
             <Route exact path="/accordance" element={<Accoradancepage />} />
+            <Route exact path="/colorchange" element={<Colorchangepage />} />
           </Routes>
         </div>
       </Router>

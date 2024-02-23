@@ -40,7 +40,6 @@ export const Dashboard = () => {
         }
 
         const data = await response.json();
-        console.log(data);
         setapiData(data);
         isloding(false);
       } catch (error) {

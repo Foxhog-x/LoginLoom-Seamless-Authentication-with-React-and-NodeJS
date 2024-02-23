@@ -25,6 +25,9 @@ export const Homepage = () => {
       case "imdb":
         navigate("/imdb");
         break;
+      case "colorchange":
+        navigate("/colorchange");
+        break;
       default:
         break;
     }
@@ -36,22 +39,21 @@ export const Homepage = () => {
         <h1>
           <button onClick={() => handleRoute("dashboard")}>Dashboard</button>
         </h1>
-      </div>
-      <div>
         <h1>
           <button onClick={() => handleRoute("upload_page")}>
             Upload Page
           </button>
         </h1>
-      </div>
-      <div>
         <h1>
           <button onClick={() => handleRoute("accordance")}>Accordance</button>
         </h1>
-      </div>
-      <div>
         <h1>
           <button onClick={() => handleRoute("imdb")}>Imdb </button>
+        </h1>
+        <h1>
+          <button onClick={() => handleRoute("colorchange")}>
+            changecolor{" "}
+          </button>
         </h1>
       </div>
     </>

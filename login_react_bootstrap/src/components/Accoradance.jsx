@@ -54,7 +54,7 @@ export const Accoradance = () => {
                 className="flex_content"
               >
                 <div className="question_flex">
-                  <h5 className="question">{value.question}</h5>
+                  <h4 className="question">{value.question}</h4>
                   <span>+</span>
                 </div>
                 {multiSelectd ? (

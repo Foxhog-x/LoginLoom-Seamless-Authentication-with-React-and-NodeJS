@@ -76,15 +76,20 @@ export const Fileupload = ({
       <h1>File Uploading</h1>
       <div className="form_div_fileupload">
         <form id="upload_form" action="Post">
-          <input
-            type="file"
-            multiple
-            name="file"
-            id="file"
-            onChange={(e) => {
-              handleFileChange(e);
-            }}
-          />
+          <div draggable>
+            <input
+              type="file"
+              multiple
+              name="file"
+              id="file"
+              onChange={(e) => {
+                handleFileChange(e);
+              }}
+              placeholder="Drag And Drop"
+            />
+            <span>Drag and drop</span>
+          </div>
+
           {/* <p>upload size less than 2MB</p> */}
 
           <button className="btn_submit" type="submit" onClick={handleSubmit}>
