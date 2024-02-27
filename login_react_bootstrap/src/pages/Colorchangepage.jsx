@@ -47,7 +47,6 @@ export const Colorchangepage = () => {
       case "hex":
         setShowColorType(`hex ${allRgbArray}`);
         document.body.style = `background: ${allRgbArray}`;
-
         break;
       default:
         break;
